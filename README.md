@@ -25,7 +25,7 @@
 
 
    According to the datasheets for the A4988 and the NEMA 17, the degrees per step is:
-      StepMode:                  Motor:            Driver:
+      Step Mode:                  Motor:            Driver:
       Full step:                 1.8 degs          90 degs
       Half step:                 0.9 degs          45 degs
       Quarter step:              0.45 degs         22.5 degs
