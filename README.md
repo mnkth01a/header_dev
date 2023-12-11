@@ -54,6 +54,7 @@
 
 
    The goals for this header file are (in no particular order):
+   
       1.  Break functions into atomic parts.  This will allow the programmer to use the functions in different ways.
 
 
