@@ -5,13 +5,13 @@
 #include <Arduino.h>
 
 /***************************************************************************
-*name : I2C LCD2004
-***************************************************************************/
+ *name : I2C LCD2004
+ ***************************************************************************/
 
 // Email:service@sunfounder.com
 // Website:www.sunfounder.com
 
-/********************************/
+/*********************************************************/
 // Include necessary libraries
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
@@ -394,9 +394,7 @@ namespace A4988
       return rounds;
    } // setRounds
 
-   /*
-      This demo does some fun stuff
-   */
+   /* This demo does some fun stuff */
    void A4988_DEMO()
    {
       /*********************************************************/
@@ -594,7 +592,7 @@ namespace A4988
       }
       direction = Serial.readStringUntil('\n').toInt();
       udir = constrain(direction, 0, 1);
-      //Serial.flush();
+      // Serial.flush();
 
       lcd.setCursor(0, 0);
       lcd.print("Speed = " + String(speed) + " %");

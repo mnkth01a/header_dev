@@ -61,3 +61,21 @@
       7.  Set up working with radians. (This will require a refresher in trigonometry.)
 
       8.  Keep documentation updated.  Add datasheets to the documentation.
+_________________________________________________________________________________
+_________________________________________________________________________________
+
+## Sunfounder I2C LCD2004 Module
+
+   Email:<service@sunfounder.com>
+   Website:www.sunfounder.com
+
+   The Sunfounder I2C LCD2004 Module has a 20x4 LCD display.  It has a PCF8574 I2C chip that controls the LCD display.  The PCF8574 chip has 16 pins.  The first 8 pins are for the data bits.  The last 8 pins are for the control bits.  The control bits are:
+
+      RS: Register Select.  RS = 0 for command.  RS = 1 for data.
+      RW: Read/Write.  RW = 0 for write.  RW = 1 for read.
+      E: Enable.  E = 0 for disable.  E = 1 for enable.
+      BL: Backlight.  BL = 0 for off.  BL = 1 for on.
+
+   The PCF8574 chip has 3 address pins.  The address pins are used to set the address of the chip.
+_________________________________________________________________________________
+_________________________________________________________________________________
