@@ -3,6 +3,8 @@
 #define PCA9685_H
 
 #include <Arduino.h>
+
+#include <Wire.h>
 #include <Adafruit_PWMServoDriver.h>
 
 

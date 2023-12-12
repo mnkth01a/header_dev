@@ -4,5 +4,17 @@
 			"path": "."
 		}
 	],
-	"settings": {}
+	"settings": {
+		"cSpell.enableFiletypes": [
+			"arduino-output",
+			"dart",
+			"platformio-debug.asm",
+			"platformio-debug.disassembly",
+			"platformio-debug.memoryview"
+		],
+		"cSpell.words": [
+			"LCDI",
+			"sunfounder"
+		]
+	}
 }
