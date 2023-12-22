@@ -461,7 +461,7 @@ namespace A4988
             lcd.print(String(spd_dly) + " ");
 
             lcd.setCursor(14, 1);
-            lcd.print("msecs.");
+            lcd.print("mcsecs");  // microseconds
 
             // Step through the number of rounds for 360 degrees
             for (int r = 1; r < rounds + 1; r++)
@@ -476,7 +476,7 @@ namespace A4988
                lcd.print(String(rounds - r + 1) + " ");
 
                lcd.setCursor(14, 2);
-               lcd.print("of " + String(rounds) + ".");
+               lcd.print("of " + String(rounds));
 
                dir = true; // Enables the motor to move in a clockwise direction
                digitalWrite(dirPin, dir);
@@ -491,7 +491,7 @@ namespace A4988
                lcd.print(String(int(degrees)) + "  ");
 
                lcd.setCursor(14, 3);
-               lcd.print("degs.");
+               lcd.print("degs");
 
                delay(1000);
 
@@ -508,7 +508,7 @@ namespace A4988
                lcd.print(String(int(degrees2))+ "  ");
 
                lcd.setCursor(14, 3);
-               lcd.print("degs.");
+               lcd.print("degs");
 
                delay(1000);
             }
