@@ -2,24 +2,9 @@
 #ifndef A4988_H
 #define A4988_H
 
-#include <Arduino.h>
+#include "globals.h"
 
-/***************************************************************************
- *name : I2C LCD2004
- ***************************************************************************/
-
-// Email:service@sunfounder.com
-// Website:www.sunfounder.com
-
-/*********************************************************/
-// Include necessary libraries
-#include <Wire.h>
-#include <LiquidCrystal_I2C.h>
-
-// Initialize the LCD object, set the LCD I2C address to 0x27 for a 20x4 display
-LiquidCrystal_I2C lcd(0x27, 20, 4);
-
-/*********************************************************/
+using namespace Globals;
 
 /***************************************************************************/
 namespace A4988
@@ -179,8 +164,8 @@ namespace A4988
    } // shift_gears
 
    /*
-      Set the unit to use.  Degrees or Radians
-   */
+         Set the unit to use.  Degrees or Radians
+      */
    int getUnits()
    {
       Serial.println("Choose units: 1 = degrees, 2 = radians.");
@@ -336,8 +321,8 @@ namespace A4988
    } // set_pulses
 
    /*
-      Steps the motor
-   */
+         Steps the motor
+      */
    void step_motor(int pulses, int speed_delay)
    {
       if ((pulses != 0) and (speed_delay > 0))
@@ -475,10 +460,19 @@ namespace A4988
             {
                Serial.println("Rounds = " + String(rounds - r + 1));
 
+               lcd.setCursor(9, 2);
+               lcd.print("           ");
+
                // Move to the third row and print the string
                lcd.setCursor(0, 2);
                lcd.print("Rounds = " + String(rounds - r + 1));
-               lcd.setCursor(11, 2);
+
+               if ((rounds - r + 1) < 10)
+                  lcd.setCursor(11, 2);
+               else if (((rounds - r + 1) > 9) and ((rounds - r + 1) < 100))
+                  lcd.setCursor(12, 2);
+               else if ((rounds - r + 1) > 99)
+                  lcd.setCursor(13, 2);
                lcd.print("of " + String(rounds));
 
                dir = true; // Enables the motor to move in a clockwise direction

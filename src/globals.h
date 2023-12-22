@@ -2,12 +2,22 @@
 #ifndef GLOBALS_H
 #define GLOBALS_H
 
+#include <Arduino.h>
+
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+
+/*********************************************************/
+
 namespace Globals
 {
    /** Constants **/
    const int DEVICE_ID = 0x0a; // Change this to the ID of this device
-   const char DEVICE_NAME[] = "Stepper Motors";
+   const char DEVICE_NAME[] = "Motors";
    const int BAUD_RATE = 9600;
+
+   // Initialize the LCD object, set the LCD I2C address to 0x27 for a 20x4 display
+   LiquidCrystal_I2C lcd(0x27, 20, 4);
 
    const int ledPIN = 13; // LED1 connected to digital pin 13
    const int buttonPIN = 1;
@@ -81,6 +91,7 @@ namespace Globals
          digitalWrite(ledPIN, ledState);
       }
    }
+
 }
 
 #endif // GLOBALS_H

@@ -1,17 +1,20 @@
-#include <Arduino.h>
+// motors.ino
+
 #include "globals.h"
 #include "A4988.h"
+#include "i2c_stuff.h"
 
 // using namespaces;
 using namespace Globals;
 using namespace A4988;
-
-/** ISR booleans **/
-volatile bool answer;
+using namespace I2C_STUFF;
 
 /*************************************************************/
 /* Interrupt Service Routines.                               */
 /*************************************************************/
+/** ISR booleans **/
+volatile bool answer;
+
 void button_ISR()
 {
   answer = digitalRead(ledPIN);
@@ -21,11 +24,17 @@ void button_ISR()
   previouscycleTime = millis();
 }
 
+/*************************************************************/
+/* Arduino Main Program Routines.                            */
+/*************************************************************/
+/** Only runs once, you know. **/
 void setup()
 {
   Serial.begin(BAUD_RATE);
 
   whoIam();
+
+  i2c_scan();
 
   // Set the digital output pins
   pinMode(stepPin, OUTPUT);
@@ -46,6 +55,7 @@ void setup()
   attachInterrupt(digitalPinToInterrupt(buttonPIN), button_ISR, FALLING);
 }
 
+/** Infinite Loop. Could've done that with a while(TRUE). **/
 void loop()
 {
   digitalWrite(ENABLEPin, !ENABLE);
@@ -71,13 +81,17 @@ void loop()
 
   delay(300);
 
+  /** Here's the meat of the program.
+  "Where's the beef?" It's right here! **/
   switch (a)
   {
+  // A4988 Stepper Motor Demo fun function.
   case 1:
     A4988_DEMO();
     Serial.flush();
     break;
 
+  // A4988 Stepper Motor run, run, run...
   case 2:
     set_cont_run_params();
     Serial.println();
