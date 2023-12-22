@@ -388,6 +388,7 @@ namespace A4988
 
       lcd.init();      // Initialize the LCD
       lcd.backlight(); // Turn on the backlight
+      lcd.clear();     // Clear the screen
 
       /*********************************************************/
 
@@ -418,7 +419,10 @@ namespace A4988
 
             // Set cursor to the top left corner and print the string on the first row
             lcd.setCursor(0, 0);
-            lcd.print("Step   = " + String(k));
+            lcd.print("Step   =");
+
+            lcd.setCursor(9, 0);
+            lcd.print(String(k));
 
             spd_dly = i;
             switch (k)
@@ -450,30 +454,29 @@ namespace A4988
             Serial.println("Speed = " + String(spd_dly) + " microseconds delay");
             // Move to the second row and print the string
             lcd.setCursor(0, 1);
-            if (spd_dly < 1000)
-               lcd.print("Speed  =  " + String(spd_dly) + " msecs.");
-            else
-               lcd.print("Speed  = " + String(spd_dly) + " msecs.");
+            lcd.print("Speed  =");
+            lcd.print("  ");
+
+            lcd.setCursor(9, 1);
+            lcd.print(String(spd_dly) + " ");
+
+            lcd.setCursor(14, 1);
+            lcd.print("msecs.");
 
             // Step through the number of rounds for 360 degrees
             for (int r = 1; r < rounds + 1; r++)
             {
                Serial.println("Rounds = " + String(rounds - r + 1));
 
-               lcd.setCursor(9, 2);
-               lcd.print("           ");
-
                // Move to the third row and print the string
                lcd.setCursor(0, 2);
-               lcd.print("Rounds = " + String(rounds - r + 1));
+               lcd.print("Rounds =");
 
-               if ((rounds - r + 1) < 10)
-                  lcd.setCursor(11, 2);
-               else if (((rounds - r + 1) > 9) and ((rounds - r + 1) < 100))
-                  lcd.setCursor(12, 2);
-               else if ((rounds - r + 1) > 99)
-                  lcd.setCursor(13, 2);
-               lcd.print("of " + String(rounds));
+               lcd.setCursor(9, 2);
+               lcd.print(String(rounds - r + 1) + " ");
+
+               lcd.setCursor(14, 2);
+               lcd.print("of " + String(rounds) + ".");
 
                dir = true; // Enables the motor to move in a clockwise direction
                digitalWrite(dirPin, dir);
@@ -481,10 +484,14 @@ namespace A4988
 
                // Move to the fourth row and print the string
                lcd.setCursor(0, 3);
-               if (degrees < 100)
-                  lcd.print("Degs   =  " + String(int(degrees)) + " degs.");
-               else
-                  lcd.print("Degs   = " + String(int(degrees)) + " degs.");
+               lcd.print("Degs   =");
+               lcd.print("  ");
+
+               lcd.setCursor(9, 3);
+               lcd.print(String(int(degrees)) + "  ");
+
+               lcd.setCursor(14, 3);
+               lcd.print("degs.");
 
                delay(1000);
 
@@ -494,14 +501,20 @@ namespace A4988
 
                // Move to the fourth row and print the string
                lcd.setCursor(0, 3);
-               lcd.print("Degs2  = " + String(int(degrees2)) + " degs.");
+               lcd.print("Degs2  =");
+               lcd.print("  ");
+
+               lcd.setCursor(9, 3);
+               lcd.print(String(int(degrees2))+ "  ");
+
+               lcd.setCursor(14, 3);
+               lcd.print("degs.");
 
                delay(1000);
             }
          }
          Serial.println();
       }
-      lcd.clear();
    } // A4988_DEMO
 
    void set_cont_run_params()
