@@ -89,6 +89,7 @@ void loop()
   case 1:
     A4988_DEMO();
     Serial.flush();
+    lcd.clear();
     break;
 
   // A4988 Stepper Motor run, run, run...
@@ -102,6 +103,7 @@ void loop()
     }
     Serial.readStringUntil('\n');
     Serial.flush();
+    lcd.clear();
     break;
 
   default:
