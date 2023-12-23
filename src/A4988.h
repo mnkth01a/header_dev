@@ -178,7 +178,8 @@ namespace A4988
       switch (units)
       {
       case 1:
-         Serial.println("Degrees.");
+         Serial.println("Using unit degrees.");
+         Serial.println();
          Serial.println("Enter degrees to rotate the motor clockwise:");
          while (Serial.available() == 0)
          {
@@ -217,12 +218,15 @@ namespace A4988
             degrees2 = 405;
          }
          Serial.println("Degrees2 = " + String(degrees2) + " degrees.");
+         Serial.println();
+
          rads = int(degrees * radiansPerDegree);
          break;
 
          // TODO: This ain't working.  Fix it.
       case 2:
-         Serial.println("Radians.");
+         Serial.println("Using units Radians.");
+         Serial.println();
          Serial.println("Enter radians to rotate the motor clockwise:");
          while (Serial.available() == 0)
          {
@@ -260,8 +264,9 @@ namespace A4988
          {
             rads2 = 405;
          }
-
          Serial.println("Radians2 = " + String(rads2) + " rads.");
+         Serial.println();
+
          degrees = rads * degreesPerRadian;
          break;
 
@@ -316,6 +321,7 @@ namespace A4988
       default:
          // TODO: Looks like a good place for an exception handler!
          Serial.println("Step Mode is not valid in set_pulses.");
+         Serial.println();
          break;
       }
    } // set_pulses
@@ -373,9 +379,6 @@ namespace A4988
       {
          rounds = round(360 / (405 - degs));
       }
-
-      Serial.println("Rounds = " + String(rounds));
-
       return rounds;
    } // setRounds
 
@@ -392,6 +395,7 @@ namespace A4988
 
       /*********************************************************/
 
+      Serial.println();
       Serial.println("A4988 Step Motor Driver DEMO");
       Serial.println();
 
@@ -406,11 +410,18 @@ namespace A4988
 
       rounds = setRounds(degrees);
 
+      Serial.println("Rounds = " + String(rounds));
+      Serial.println();
+
       // Step through the five step modes
       for (int k = 1; k < 6; k++)
       {
          set_pulses(k);
          shift_gears(k);
+
+         Serial.println("Pulses = " + String(pulses));
+         Serial.println("Pulses2 = " + String(pulses2));
+         Serial.println();
 
          // Step through the speed range
          for (int i = maxSpeed; i < minSpeed + 1; i += 200)
@@ -452,6 +463,8 @@ namespace A4988
                break;
             }
             Serial.println("Speed = " + String(spd_dly) + " microseconds delay");
+            Serial.println();
+
             // Move to the second row and print the string
             lcd.setCursor(0, 1);
             lcd.print("Speed  =");
@@ -461,12 +474,12 @@ namespace A4988
             lcd.print(String(spd_dly) + " ");
 
             lcd.setCursor(14, 1);
-            lcd.print("mcsecs");  // microseconds
+            lcd.print("mcsecs"); // microseconds
 
             // Step through the number of rounds for 360 degrees
             for (int r = 1; r < rounds + 1; r++)
             {
-               Serial.println("Rounds = " + String(rounds - r + 1));
+               // Serial.println("Rounds = " + String(rounds - r + 1));
 
                // Move to the third row and print the string
                lcd.setCursor(0, 2);
@@ -505,7 +518,7 @@ namespace A4988
                lcd.print("  ");
 
                lcd.setCursor(9, 3);
-               lcd.print(String(int(degrees2))+ "  ");
+               lcd.print(String(int(degrees2)) + "  ");
 
                lcd.setCursor(14, 3);
                lcd.print("degs");
