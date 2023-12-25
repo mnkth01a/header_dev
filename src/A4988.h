@@ -615,16 +615,21 @@ namespace A4988
       // Serial.flush();
 
       lcd.setCursor(0, 0);
-      lcd.print("Speed = " + String(speed) + " %");
+      lcd.print("Speed   = " + String(speed) + "%");
+
       lcd.setCursor(0, 1);
       if (udir == 1)
-         lcd.print("Dir   = CW");
+         lcd.print("Dir     = CW");
       else
-         lcd.print("Dir   = CCW");
+         lcd.print("Dir     = CCW");
+
       lcd.setCursor(0, 2);
-      lcd.print("Spd_dly  = " + String(spd_dly));
+      lcd.print("Spd_dly = " + String(spd_dly));
+      lcd.setCursor(14, 2);
+      lcd.print("mcsecs"); // microseconds
+
       lcd.setCursor(0, 3);
-      lcd.print("Pulses   = " + String(pulses));
+      lcd.print("Pulses  = " + String(pulses));
    } // set_cont_run_params
 
    void continuous_run(bool dir, int pulses, int speed_delay)
