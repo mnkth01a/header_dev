@@ -625,8 +625,8 @@ namespace A4988
 
       lcd.setCursor(0, 2);
       lcd.print("Spd_dly = " + String(spd_dly));
-      lcd.setCursor(14, 2);
-      lcd.print("mcsecs"); // microseconds
+      lcd.setCursor(15, 2);
+      lcd.print("msecs"); // microseconds
 
       lcd.setCursor(0, 3);
       lcd.print("Pulses  = " + String(pulses));
